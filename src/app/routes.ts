@@ -1,15 +1,32 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
-import { HomeComponent } from './shared/pages/home/home.component';
-import { RootComponent } from './shared/pages/root/root.component';
+import {
+  KnownUserComponent,
+  LandingComponent,
+  RegistrationComponent,
+  ServiceChoiceComponent,
+  SummaryComponent,
+} from '@pages';
 
 export const routes: Routes = [
   {
     path: '',
-    component: RootComponent,
+    component: ServiceChoiceComponent,
   },
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'landing',
+    component: LandingComponent,
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent,
+  },
+  {
+    path: 'known-user',
+    component: KnownUserComponent,
+  },
+  {
+    path: 'summary',
+    component: SummaryComponent,
   },
 ];

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import { PopupBaseService } from '../../../shared/providers/popup/popup-base.service';
+import {Injectable} from '@angular/core';
+
+import {PopupBaseService} from '../../../../shared/providers/popup/popup-base.service';
 
 @Injectable()
-export class PopupService extends PopupBaseService {
+export class OnpierPopupService extends PopupBaseService {
   constructor() {
     super();
   }
@@ -22,7 +23,7 @@ export class PopupService extends PopupBaseService {
   shouldOpenWelcomePopup(): boolean {
     throw new Error('Method not implemented.');
   }
-  
+
   shouldOpenBirthdayPopup(): boolean {
     throw new Error('Method not implemented.');
   }

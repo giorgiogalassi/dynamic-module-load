@@ -1,7 +1,7 @@
+import {OnpierPopupService} from '@distributors/onpier';
 
-import { PopupService as OnpierPopupService } from '../../../distributors/onpier/providers/popup.service';
-import { Distributors } from '../../models/enums/distributors.enum';
-import { ConfigService } from '../config/config.service';
+import {Distributors} from '@models';
+import {ConfigService} from '@services';
 
 type PopupServices = OnpierPopupService;
 

@@ -1,17 +1,18 @@
-import { ComponentLoaderService as OnpierComponentLoaderService } from '../../../distributors/onpier/providers/component-loader.service';
-import { ComponentLoaderService as HukComponentLoaderService } from '../../../distributors/huk/providers/component-loader.service';
-import { Distributors } from '../../models/enums/distributors.enum';
-import { ConfigService } from '../config/config.service';
+import {HukComponentLoaderService} from '@distributors/huk';
+import {OnpierComponentLoaderService} from '@distributors/onpier';
 
-type PopupServices = OnpierComponentLoaderService;
+import {Distributors} from '@models';
+import {ConfigService, StepperService} from '@services';
 
-export function componentLoaderFactory(config: ConfigService) {
+type ComponentLoadersServices = OnpierComponentLoaderService | HukComponentLoaderService;
+
+export function componentLoaderFactory(config: ConfigService, stepperBaseService: StepperService) {
   const distributor = config.getDistributor();
 
-  const distributorMap = new Map<Distributors, PopupServices>([
+  const distributorMap = new Map<Distributors, ComponentLoadersServices>([
     [Distributors.Huk, new HukComponentLoaderService()],
   ]);
 
   if (distributorMap.has(distributor)) return distributorMap.get(distributor);
-  return new OnpierComponentLoaderService();
+  return new OnpierComponentLoaderService(stepperBaseService);
 }

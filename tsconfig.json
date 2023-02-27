@@ -18,7 +18,15 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": ["ES2022", "dom"]
+    "lib": ["ES2022", "dom"],
+    "paths": {
+      "@services": ["src/app/shared/providers/index.ts"],
+      "@pages": ["src/app/shared/pages/index.ts"],
+      "@models": ["src/app/shared/models/index.ts"],
+      "@distributors/huk": ["src/app/distributors/huk/index.ts"],
+      "@distributors/lvm": ["src/app/distributors/lvm/index.ts"],
+      "@distributors/onpier": ["src/app/distributors/onpier/index.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

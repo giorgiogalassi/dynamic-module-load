@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-header',
+  selector: 'huk-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  @Input() public text: string = "Default";
+  @Input() public text: string = 'Default';
+  @Output() public clickEmitter: EventEmitter<void> = new EventEmitter();
 }

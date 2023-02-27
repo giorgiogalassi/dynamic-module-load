@@ -1,12 +1,8 @@
-import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {delay, Observable, of} from 'rxjs';
 
-import {
-  Config,
-  DistributorFeaturs,
-} from '../../models/config/config.interface';
-import { Distributors } from '../../models/enums/distributors.enum';
-import { IConfigService } from './config.service.interface';
+import {Config, DistributorFeaturs, Distributors} from '@models';
+import {IConfigService} from '@services';
 
 @Injectable()
 export class ConfigService implements IConfigService {
@@ -19,6 +15,27 @@ export class ConfigService implements IConfigService {
     features: [
       {
         name: 'landingPage',
+        path: '/landing',
+        isActive: false,
+      },
+      {
+        name: 'step1',
+        path: '',
+        isActive: true,
+      },
+      {
+        name: 'step2',
+        path: '/registration',
+        isActive: true,
+      },
+      {
+        name: 'step3',
+        path: '/known-user',
+        isActive: true,
+      },
+      {
+        name: 'step4',
+        path: '/summary',
         isActive: true,
       },
     ],
@@ -35,7 +52,18 @@ export class ConfigService implements IConfigService {
     return this._config.distributor;
   }
 
+  getDistributorNavigation(): string[] {
+    return this._config.features.filter((feuature) => feuature.isActive).map(({path}) => path);
+  }
+
   getDistributorFeatures(): DistributorFeaturs[] {
     return this._config.features;
+  }
+
+  hasLandingPage(): boolean {
+    return (
+      this.getDistributorFeatures().find((feature) => feature.name === 'landingPage')?.isActive ||
+      false
+    );
   }
 }

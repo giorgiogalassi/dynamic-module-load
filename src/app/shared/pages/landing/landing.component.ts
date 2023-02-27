@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { DistributorBaseService } from '../../providers/distributor/distributor-base.service';
+import {Component} from '@angular/core';
+
+import {StepperService} from '@services';
 
 @Component({
   selector: 'app-landing',
@@ -8,9 +8,13 @@ import { DistributorBaseService } from '../../providers/distributor/distributor-
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent {
-  constructor(private distributorService: DistributorBaseService) {}
+  constructor(private stepperService: StepperService) {}
 
   go(): void {
-    this.distributorService.navigate();
+    this.stepperService.go();
+  }
+
+  back(): void {
+    this.stepperService.back();
   }
 }

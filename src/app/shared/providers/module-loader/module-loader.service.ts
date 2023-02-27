@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { Distributors } from '../../models/enums/distributors.enum';
+import {Distributors} from '@models';
 
 @Injectable()
 export class ModuleLoaderService {
@@ -27,22 +27,16 @@ export class ModuleLoaderService {
       );
     }
 
-    if (
-      this._modulesMap.has(distributor) &&
-      distributor === Distributors.Onpier
-    ) {
+    if (this._modulesMap.has(distributor) && distributor === Distributors.Onpier) {
       this._modulesMap.set(
         distributor,
-        import('../../../distributors/onpier/onpier.module').then(
-          (m) => m.OnpierModule
-        )
+        import('../../../distributors/onpier/onpier.module').then((m) => m.OnpierModule)
       );
     }
   }
 
   getModule(distributor: Distributors): Promise<any> | undefined {
-    if (this._modulesMap.has(distributor))
-      return this._modulesMap.get(distributor);
+    if (this._modulesMap.has(distributor)) return this._modulesMap.get(distributor);
 
     return undefined;
   }

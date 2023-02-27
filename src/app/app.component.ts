@@ -1,11 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { filter, take } from 'rxjs';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import { FooterDynamicDirective } from './shared/directives/footer-dynamic.directive';
-import { ConfigService } from './shared/providers/config/config.service';
-import { DistributorBaseService } from './shared/providers/distributor/distributor-base.service';
-import { ModuleLoaderService } from './shared/providers/module-loader/module-loader.service';
+import {
+  ConfigService,
+  DistributorBaseService,
+  ModuleLoaderService,
+  StepperService,
+} from '@services';
+
+import {FooterDynamicDirective} from './shared/directives/footer-dynamic.directive';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +16,15 @@ import { ModuleLoaderService } from './shared/providers/module-loader/module-loa
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  @ViewChild(FooterDynamicDirective, { static: true })
+  @ViewChild(FooterDynamicDirective, {static: true})
   dynamicComponent!: FooterDynamicDirective;
 
   constructor(
     private moduleLoadeService: ModuleLoaderService,
     private distributorService: DistributorBaseService,
+    private stepperService: StepperService,
     private configService: ConfigService,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
@@ -38,16 +43,14 @@ export class AppComponent implements OnInit {
       });
 
       this.router.resetConfig(config);
+      this.route.queryParamMap.subscribe((params) => {
+        this.stepperService.goToLandingIfPossible();
 
-      /* this.router.events
-        .pipe(
-          filter((event) => event instanceof NavigationEnd),
-          take(1)
-        )
-        .subscribe(() => this.distributorService.init()); */
+        if (params.keys.length > 0) this.distributorService.init();
+      });
 
       console.info(
-        `%cLOADING ${distributor.toUpperCase()}...`,
+        `%cLOADING ${this.distributorService.getDistributorInfo().toUpperCase()}...`,
         'font-size: xx-large'
       );
     }

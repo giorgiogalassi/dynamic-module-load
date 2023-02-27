@@ -1,6 +1,6 @@
-import { Directive, OnInit, ViewContainerRef } from '@angular/core';
+import {Directive, Input, OnInit, ViewContainerRef} from '@angular/core';
 
-import { ComponentLoaderBaseService } from '../providers/component-loader/component-loader.service';
+import {ComponentLoaderBaseService} from '@services';
 
 @Directive({
   selector: '[headerDynamicComponent]',

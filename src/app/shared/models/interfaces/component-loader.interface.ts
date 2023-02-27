@@ -1,6 +1,6 @@
-import { ComponentRef, ViewContainerRef } from '@angular/core';
+import {ComponentRef, ViewContainerRef} from '@angular/core';
 
 export interface ComponentLoader {
-  loadFooterComponent(vcr: ViewContainerRef): ComponentRef<unknown> | null;
-  loadHeaderComponent(vcr: ViewContainerRef): ComponentRef<unknown> | null;
+  loadFooterComponent(vcr: ViewContainerRef): void;
+  loadHeaderComponent(vcr: ViewContainerRef): void;
 }

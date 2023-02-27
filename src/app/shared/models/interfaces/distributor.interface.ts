@@ -1,7 +1,9 @@
-import { Distributors } from '../../../shared/models/enums/distributors.enum';
+import {Distributors} from '@models';
 
 export interface Distributor {
   init: () => void;
   getDistributorInfo: () => Distributors;
-  navigate?: () => void;
+  getDistributorNavigation: () => string[];
+  go?: () => void;
+  back?: () => void;
 }

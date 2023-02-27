@@ -4,9 +4,9 @@ export abstract class PopupBaseService {
   abstract start(): void;
   abstract next(): void;
 
-  protected abstract shouldOpenCookieConsent(): boolean;
-  protected abstract shouldOpenWelcomePopup(): boolean;
-  protected abstract shouldOpenBirthdayPopup(): boolean;
+  abstract shouldOpenCookieConsent(): boolean;
+  abstract shouldOpenWelcomePopup(): boolean;
+  abstract shouldOpenBirthdayPopup(): boolean;
 
   protected openCookiePopup(): void {
     console.log('Opening Cookie Consent popup!');

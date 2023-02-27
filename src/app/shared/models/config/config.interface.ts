@@ -1,7 +1,8 @@
-import { Distributors } from '../../../shared/models/enums/distributors.enum';
+import {Distributors} from '@models';
 
 export interface DistributorFeaturs {
   name: string;
+  path: string;
   isActive: boolean;
 }
 
